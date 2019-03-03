@@ -1,5 +1,7 @@
 @font-face {
     font-family: "{{fontName}}";
+    font-weight: normal;
+    font-style: normal;
     src: {{{src}}};
 }
 
@@ -11,13 +13,19 @@
     font-family: {{fontName}} !important;
     font-style: normal;
     font-weight: normal !important;
-    vertical-align: top;
 
     display: inline-block;
     text-decoration: none;
     text-align: center;
+    vertical-align: text-top;
     width: 1em;
+
+    /* For safety - reset parent styles, that can break glyph codes*/
+    font-variant: normal;
+    text-transform: none;
 }
+
+{{baseSelector}}.large { font-size: 200%; }
 
 {{#each codepoints}}
 .{{../classPrefix}}{{@key}}:before { content: "\\{{this}}"; }

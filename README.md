@@ -7,7 +7,7 @@ npm install
 npm run build
 ```
 
-This will create `build` folder with font, css file and html to review icons. Upload `woff` and `css` to abapGit.
+This will create `build` folder with font, css file and html to review icons. Upload `woff` and `css` to abapGit with `SMW0` ([see docs](https://docs.abapgit.org/development/adding-icons.html)).
 
 ## Adding new icons
 

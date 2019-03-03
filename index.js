@@ -18,12 +18,25 @@ function generateFont(destDir, fontName, files) {
             html: true,
             types: ['woff'],
             cssTemplate: 'css-template.hbs',
+            cssFontsUrl: '../font',
             // writeFiles: false,
         }, (error, result) => {
             if (error) reject(error);
             resolve(result);
         });
     });
+}
+
+function patchCss(cssPath) {
+    let css = fs.readFileSync(cssPath, 'utf8');
+    css = css.replace(/woff\?(\w{32})/, 'woff'); // remove hash, not supported by sap
+    fs.writeFileSync(cssPath, css, 'utf8');
+}
+
+function patchHtml(htmlPath) {
+    let css = fs.readFileSync(htmlPath, 'utf8');
+    css = css.replace('../font/', ''); // remove '../font' css prefix
+    fs.writeFileSync(htmlPath, css, 'utf8');
 }
 
 async function main() {
@@ -40,10 +53,8 @@ async function main() {
     }
 
     console.log('Patching CSS ...');
-    const cssPath = path.join(buildDir, `${fontName}.css`);
-    let css = fs.readFileSync(cssPath, 'utf8');
-    css = css.replace(/woff\?(\w{32})/, 'woff'); // remove hash, not supported by sap
-    fs.writeFileSync(cssPath, css, 'utf8');
+    patchCss(path.join(buildDir, `${fontName}.css`));
+    patchHtml(path.join(buildDir, `${fontName}.html`));
     console.log('Done!');
 }
 
