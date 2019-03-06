@@ -1,0 +1,14 @@
+diff --git a/node_modules/webfonts-generator/src/renderHtml.js b/node_modules/webfonts-generator/src/renderHtml.js
+index ede9c5c..25344a3 100644
+--- a/node_modules/webfonts-generator/src/renderHtml.js
++++ b/node_modules/webfonts-generator/src/renderHtml.js
+@@ -19,7 +19,8 @@ var renderHtml = function(options) {
+ 	var ctx = _.extend({
+ 		names: options.names,
+ 		fontName: options.fontName,
+-		styles: styles
++		styles: styles,
++		baseClass: options.templateOptions.baseSelector.replace('.', ''),
+ 	}, options.templateOptions)
+ 	return template(ctx)
+ }
