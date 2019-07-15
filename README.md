@@ -24,3 +24,4 @@ This will create `build` folder with font, css file and html to review icons. Up
 ## Credits
 
 abapGit icons are created from [Font Awesome](https://fontawesome.com/) free icon set ([CC BY 4.0 License](https://fontawesome.com/license/free)).
+
