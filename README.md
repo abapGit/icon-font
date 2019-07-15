@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/sbcgua/abapgit-icon-font.svg?branch=master)](https://travis-ci.com/sbcgua/abapgit-icon-font)
+[![Build Status](https://travis-ci.com/abapGit/icon-font.svg?branch=master)](https://travis-ci.com/abapGit/icon-font)
 
 # abapGit webfont generator package
 
