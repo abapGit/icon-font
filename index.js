@@ -50,6 +50,7 @@ async function main() {
         console.log('Font generation successful');
     } catch (error) {
         console.error('Font generation failed', error);
+        process.exit(1);
     }
 
     console.log('Patching CSS ...');
