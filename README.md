@@ -12,7 +12,7 @@ On every commit and pull request, a Github action will build the abapGit icon fo
 
 Here are the steps to add icons to this repository:
 
-1. Get the SVG files the icons you want to add
+1. Get the SVG files for the icons you want to add
 - [Download](https://fontawesome.com/download) Font Awesome free distribution and get the SVG files from there or
 - Find the icons on and download the SVG files from the [Font Awesome website](https://fontawesome.com/icons?d=gallery&m=free)
 2. Copy additional icons to `/svg/` folder of your fork (or submit own glyphs ;)
