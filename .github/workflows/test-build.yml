@@ -12,11 +12,25 @@ jobs:
     name: test-build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v1
-      - uses: actions/checkout@v2
-      - name: Run test build
-        run: |
-          npm install
-          npm run build
-          test -f build/ag-icons.woff
-          test -f build/ag-icons.css
+    - uses: actions/setup-node@v1
+    - uses: actions/checkout@v2
+    - name: Run test build
+      run: |
+        npm install
+        npm run build
+        test -f build/ag-icons.woff
+        test -f build/ag-icons.css
+    - name: Upload font
+      if: always()
+      uses: actions/upload-artifact@main
+      with:
+        name: ag-icons.woff
+        path: ./build/ag-icons.woff
+        retention-days: 7
+    - name: Upload css
+      if: always()
+      uses: actions/upload-artifact@main
+      with:
+        name: ag-icons.css
+        path: ./build/ag-icons.css
+        retention-days: 7
