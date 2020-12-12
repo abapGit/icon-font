@@ -25,5 +25,5 @@ jobs:
       uses: actions/upload-artifact@main
       with:
         name: abapGit-font-and-css
-        path: ./build/ag-icons.*
+        path: ./build/**/*.*
         retention-days: 7
