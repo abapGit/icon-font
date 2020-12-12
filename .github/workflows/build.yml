@@ -1,4 +1,4 @@
-name: test-build
+name: build
 on:
   push:
     branches:
@@ -8,13 +8,13 @@ on:
       - master
 
 jobs:
-  test-build:
-    name: test-build
+  build:
+    name: build
     runs-on: ubuntu-latest
     steps:
     - uses: actions/setup-node@v1
     - uses: actions/checkout@v2
-    - name: Run test build
+    - name: Run build
       run: |
         npm install
         npm run build
