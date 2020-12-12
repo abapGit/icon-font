@@ -26,11 +26,11 @@ jobs:
       with:
         name: ag-icons.woff
         path: ./build/ag-icons.woff
-        retention-days: 7
+        retention-days: 3
     - name: Upload css
       if: always()
       uses: actions/upload-artifact@main
       with:
         name: ag-icons.css
         path: ./build/ag-icons.css
-        retention-days: 7
+        retention-days: 3
