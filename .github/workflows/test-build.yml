@@ -20,17 +20,10 @@ jobs:
         npm run build
         test -f build/ag-icons.woff
         test -f build/ag-icons.css
-    - name: Upload font
+    - name: Upload font and css
       if: always()
       uses: actions/upload-artifact@main
       with:
-        name: ag-icons.woff
-        path: ./build/ag-icons.woff
-        retention-days: 3
-    - name: Upload css
-      if: always()
-      uses: actions/upload-artifact@main
-      with:
-        name: ag-icons.css
-        path: ./build/ag-icons.css
-        retention-days: 3
+        name: abapGit-font-and-css
+        path: ./build/ag-icons.*
+        retention-days: 7
