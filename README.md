@@ -8,7 +8,20 @@ Note: The font is not limited to icons. For example, it include the abapGit logo
 
 ## Build
 
-On every commit and pull request, a Github action will build the abapGit icon font and corresponding CSS files. The files are available as an artifact in the action and you can download them from there.
+### GitHub Action
+
+On every commit and pull request, a GitHub action will build the abapGit icon font and corresponding CSS files. The files are available as an artifact in the action and you can download them from there.
+
+### Nodejs Build
+
+Alternatively, you can build using nodejs (version 10 at the time of package creation):
+
+```
+npm install
+npm run build
+```
+
+This will create build folder with font, css file and html to review icons. Upload woff and css to abapGit (see docs).
 
 ## Adding Icons
 
@@ -20,21 +33,11 @@ Here are the steps to add icons to this repository:
 ![Font Awesome Example](img/fontawesome-example.png)
 2. Copy additional icons to `/svg/` folder of your fork (or submit own glyphs ;)
 3. Commit to your fork and create a pull request
-4. Download the abapGit icon font and CSS files from the Github action
+4. Download the abapGit icon font and CSS files from the GitHub action
 ![Build Example](img/build-example.png)
 
 The steps to update abapGit are documented [here](https://docs.abapgit.org/development/adding-icons.html).
 
-## Local Build
-
-You need nodejs to be installed (version 10 at the time of package creation)
-
-```
-npm install
-npm run build
-```
-
-This will create build folder with font, css file and html to review icons. Upload woff and css to abapGit (see docs).
 
 ## Credits
 
