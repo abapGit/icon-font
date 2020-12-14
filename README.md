@@ -25,6 +25,17 @@ Here are the steps to add icons to this repository:
 
 The steps to update abapGit are documented [here](https://docs.abapgit.org/development/adding-icons.html).
 
+## Local Build
+
+You need nodejs to be installed (version 10 at the time of package creation)
+
+```
+npm install
+npm run build
+```
+
+This will create build folder with font, css file and html to review icons. Upload woff and css to abapGit (see docs).
+
 ## Credits
 
 abapGit icons are created from [Font Awesome](https://fontawesome.com/) free icon set ([CC BY 4.0 License](https://fontawesome.com/license/free)).
