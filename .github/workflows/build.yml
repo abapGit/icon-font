@@ -21,7 +21,6 @@ jobs:
         test -f build/ag-icons.woff
         test -f build/ag-icons.css
     - name: Upload font and css
-      if: always()
       uses: actions/upload-artifact@main
       with:
         name: abapGit-font-and-css
