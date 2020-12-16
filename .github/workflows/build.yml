@@ -1,0 +1,28 @@
+name: build
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/setup-node@v1
+    - uses: actions/checkout@v2
+    - name: Run build
+      run: |
+        npm install
+        npm run build
+        test -f build/ag-icons.woff
+        test -f build/ag-icons.css
+    - name: Upload font and css
+      uses: actions/upload-artifact@main
+      with:
+        name: abapGit-font-and-css
+        path: ./build/**/*.*
+        retention-days: 7
