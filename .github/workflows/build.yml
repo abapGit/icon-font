@@ -14,6 +14,13 @@ jobs:
     steps:
     - uses: actions/setup-node@v1
     - uses: actions/checkout@v2
+    - uses: actions/cache@v2
+    # https://github.com/actions/cache/blob/main/examples.md#node---npm
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-    
     - name: Run build
       run: |
         npm install
@@ -24,7 +31,7 @@ jobs:
       uses: actions/upload-artifact@main
       with:
         name: abapGit-font-and-css
-        path: ./build/**/*.*
+        path: ./build
         retention-days: 7
   deploy:
     name: Deploy rendered icons
@@ -36,4 +43,12 @@ jobs:
       with:
         name: abapGit-font-and-css
     - name: Display structure of downloaded files
-      run: ls -R
+      run: |
+        ls -R
+        mkdir public
+        touch public/index.html
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./public        
