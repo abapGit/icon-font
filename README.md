@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/abapGit/icon-font.svg?branch=master)](https://travis-ci.com/abapGit/icon-font)
+[![build](https://github.com/abapGit/icon-font/actions/workflows/build.yml/badge.svg)](https://github.com/abapGit/icon-font/actions/workflows/build.yml)
 
 # abapGit webfont generator package
 
@@ -6,11 +6,15 @@ Icons in abapGit are displayed using a specially build font. As a default, abapG
 
 Note: The font is not limited to icons. For example, it include the abapGit logo (Git icon + abapGit text).
 
+See also the current font content at https://icons.abapgit.org.
+
 ## Build
 
 ### GitHub Action
 
 On every commit and pull request, a GitHub action will build the abapGit icon font and corresponding CSS files. The files are available as an artifact in the action and you can download them from there.
+
+When a pull request with new icons is merged (or on push to main branch) the content is also published to https://github.com/abapGit/icon-font. The result can be also seen at https://icons.abapgit.org.
 
 ### Nodejs Build
 
