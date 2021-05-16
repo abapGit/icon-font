@@ -9,11 +9,18 @@ on:
 
 jobs:
   build:
-    name: build
+    name: Build icon font artifacts
     runs-on: ubuntu-latest
     steps:
     - uses: actions/setup-node@v1
     - uses: actions/checkout@v2
+    - uses: actions/cache@v2
+    # https://github.com/actions/cache/blob/main/examples.md#node---npm
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-    
     - name: Run build
       run: |
         npm install
@@ -21,8 +28,32 @@ jobs:
         test -f build/ag-icons.woff
         test -f build/ag-icons.css
     - name: Upload font and css
-      uses: actions/upload-artifact@main
+      uses: actions/upload-artifact@v2
       with:
         name: abapGit-font-and-css
-        path: ./build/**/*.*
+        path: ./build/
+        if-no-files-found: error
         retention-days: 7
+  deploy:
+    name: Deploy rendered icons
+    runs-on: ubuntu-latest
+    needs: build
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && github.repository == 'abapGit/icon-font' }}
+    steps:
+    - uses: actions/download-artifact@v2
+      with:
+        name: abapGit-font-and-css
+    - name: Display structure of downloaded files
+      run: |
+        ls -R
+        mkdir public
+        shopt -s extglob
+        mv !(public) public
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        publish_dir: ./public        
+        cname: icons.abapgit.org
+        publish_branch: main
+        external_repository: abapGit/icons.abapgit.org

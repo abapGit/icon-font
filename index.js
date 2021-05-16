@@ -18,7 +18,9 @@ function generateFont(destDir, fontName, files) {
             html: true,
             types: ['woff'],
             cssTemplate: 'css-template.hbs',
-            cssFontsUrl: '../font',
+            htmlTemplate: 'html-template.hbs',
+            htmlDest: path.join(destDir, 'index.html'),
+            // cssFontsUrl: '../font',
             // writeFiles: false,
         }, (error, result) => {
             if (error) reject(error);
