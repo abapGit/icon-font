@@ -52,6 +52,8 @@ jobs:
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         publish_dir: ./public        
-        cname: icons2.abapgit.org
+        cname: icons.abapgit.org
+        publish_branch: main
+        external_repository: abapGit/icons.abapgit.org
