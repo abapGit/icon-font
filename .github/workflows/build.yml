@@ -56,4 +56,7 @@ jobs:
         publish_dir: ./public        
         cname: icons.abapgit.org
         publish_branch: main
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
+        force_orphan: true        
         external_repository: abapGit/icons.abapgit.org
