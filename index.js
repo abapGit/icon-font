@@ -1,6 +1,7 @@
 const webfontsGenerator = require('webfonts-generator');
 const fs = require('fs');
 const path = require('path');
+const mkdirp = require('mkdirp');
 
 function collectFiles(dir) {
     let files = fs.readdirSync(dir);
@@ -20,7 +21,7 @@ function generateFont(destDir, fontName, files) {
             cssTemplate: 'css-template.hbs',
             htmlTemplate: 'html-template.hbs',
             htmlDest: path.join(destDir, 'index.html'),
-            // cssFontsUrl: '../font',
+            cssFontsUrl: '../font',
             // writeFiles: false,
         }, (error, result) => {
             if (error) reject(error);
@@ -35,18 +36,7 @@ function patchCss(cssPath) {
     fs.writeFileSync(cssPath, css, 'utf8');
 }
 
-function patchHtml(htmlPath) {
-    let css = fs.readFileSync(htmlPath, 'utf8');
-    css = css.replace('../font/', ''); // remove '../font' css prefix
-    fs.writeFileSync(htmlPath, css, 'utf8');
-}
-
-async function main() {
-    const buildDir = 'build';
-    const fontName = 'ag-icons';
-    const files = collectFiles('svg');
-    console.log(`SVG files found: ${files.length}`);
-
+async function buildFont(buildDir, fontName, files) {
     try {
         await generateFont(buildDir, fontName, files);
         console.log('Font generation successful');
@@ -54,11 +44,46 @@ async function main() {
         console.error('Font generation failed', error);
         process.exit(1);
     }
+}
+
+async function moveFiles(buildDir, cssName, fontFileNames) {
+    await mkdirp(path.join(buildDir, 'css'));
+    await mkdirp(path.join(buildDir, 'font'));
+    fs.renameSync(path.join(buildDir, cssName), path.join(buildDir, 'css', cssName));
+    for (const f of fontFileNames) {
+        fs.renameSync(path.join(buildDir, f), path.join(buildDir, 'font', f));
+    }
+}
+
+async function main() {
+    const buildDir = 'build';
+    const fontName = 'ag-icons';
+    const cssName = `${fontName}.css`;
+    const fontFileNames = [
+        `${fontName}.svg`,
+        `${fontName}.ttf`,
+        `${fontName}.woff`,
+    ];
+    const files = collectFiles('svg');
+    console.log(`SVG files found: ${files.length}`);
+
+    console.log('Building font ...');
+    await buildFont(buildDir, fontName, files);
 
     console.log('Patching CSS ...');
-    patchCss(path.join(buildDir, `${fontName}.css`));
-    patchHtml(path.join(buildDir, `${fontName}.html`));
+    patchCss(path.join(buildDir, cssName));
+
+    console.log('Moving files ...');
+    await moveFiles(buildDir, cssName, fontFileNames);
+
     console.log('Done!');
 }
 
-main();
+// RUN
+
+try {
+    main();
+} catch (error) {
+    console.error(error);
+    process.exit(1);
+}
