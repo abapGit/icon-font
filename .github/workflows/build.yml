@@ -28,6 +28,7 @@ jobs:
         test -f build/font/ag-icons.woff
         test -f build/css/ag-icons.css
         test -f build/index.html
+        zip -v
     - name: Upload font and css
       uses: actions/upload-artifact@v2
       with:
@@ -44,9 +45,10 @@ jobs:
     - uses: actions/download-artifact@v2
       with:
         name: abapGit-font-and-css
-    - name: Display structure of downloaded files
+    - name: Display structure of downloaded files and move file to public dir
       run: |
         ls -R
+        zip -j assets.zip font/ag-icons.woff css/ag-icons.css
         mkdir public
         shopt -s extglob
         mv !(public) public
