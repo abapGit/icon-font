@@ -21,14 +21,14 @@ jobs:
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-    
+    - name: NPM install
+      run: npm install
     - name: Run build
       run: |
-        npm install
         npm run build
         test -f build/font/ag-icons.woff
         test -f build/css/ag-icons.css
         test -f build/index.html
-        zip -v
     - name: Upload font and css
       uses: actions/upload-artifact@v2
       with:
