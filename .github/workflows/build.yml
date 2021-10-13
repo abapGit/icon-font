@@ -21,9 +21,10 @@ jobs:
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-    
+    - name: NPM install
+      run: npm install
     - name: Run build
       run: |
-        npm install
         npm run build
         test -f build/font/ag-icons.woff
         test -f build/css/ag-icons.css
@@ -44,9 +45,10 @@ jobs:
     - uses: actions/download-artifact@v2
       with:
         name: abapGit-font-and-css
-    - name: Display structure of downloaded files
+    - name: Display structure of downloaded files and move file to public dir
       run: |
         ls -R
+        zip -j assets.zip font/ag-icons.woff css/ag-icons.css
         mkdir public
         shopt -s extglob
         mv !(public) public
