@@ -12,9 +12,9 @@ jobs:
     name: Build icon font artifacts
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/setup-node@v3.5.1
-    - uses: actions/checkout@v2
-    - uses: actions/cache@v2
+    - uses: actions/setup-node@v3.5
+    - uses: actions/checkout@v2.5
+    - uses: actions/cache@v3.0
     # https://github.com/actions/cache/blob/main/examples.md#node---npm
       with:
         path: ~/.npm
@@ -30,7 +30,7 @@ jobs:
         test -f build/css/ag-icons.css
         test -f build/index.html
     - name: Upload font and css
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3.1
       with:
         name: abapGit-font-and-css
         path: ./build/
@@ -42,7 +42,7 @@ jobs:
     needs: build
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && github.repository == 'abapGit/icon-font' }}
     steps:
-    - uses: actions/download-artifact@v2
+    - uses: actions/download-artifact@v3.0
       with:
         name: abapGit-font-and-css
     - name: Display structure of downloaded files and move file to public dir
