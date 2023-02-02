@@ -31,6 +31,7 @@ This will create build folder with font, css file and html to review icons. Uplo
 
 Here are the steps to add icons to this repository:
 
+1. Search [Font Awesome - Free & Solid](https://fontawesome.com/search?o=r&m=free&s=solid) library for icons (preferred to match existing icons)
 1. Get the SVG files for the icons you want to add
 - [Download](https://fontawesome.com/download) Font Awesome free distribution and get the SVG files from there or
 - Find the icons on and download the SVG files from the [Font Awesome website](https://fontawesome.com/icons?d=gallery&m=free)
