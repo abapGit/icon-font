@@ -47,8 +47,8 @@ async function buildFont(buildDir, fontName, files) {
 }
 
 async function moveFiles(buildDir, cssName, fontFileNames) {
-    await mkdirp.mkdirp(path.join(buildDir, 'css'));
-    await mkdirp.mkdirp(path.join(buildDir, 'font'));
+    await mkdirp(path.join(buildDir, 'css'));
+    await mkdirp(path.join(buildDir, 'font'));
     fs.renameSync(path.join(buildDir, cssName), path.join(buildDir, 'css', cssName));
     for (const f of fontFileNames) {
         fs.renameSync(path.join(buildDir, f), path.join(buildDir, 'font', f));
