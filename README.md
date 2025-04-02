@@ -32,13 +32,16 @@ This will create build folder with font, css file and html to review icons. Uplo
 Here are the steps to add icons to this repository:
 
 1. Search [Font Awesome - Free & Solid](https://fontawesome.com/search?o=r&m=free&s=solid) library for icons (preferred to match existing icons)
-1. Get the SVG files for the icons you want to add
+2. Get the SVG files for the icons you want to add
 - [Download](https://fontawesome.com/download) Font Awesome free distribution and get the SVG files from there or
 - Find the icons on and download the SVG files from the [Font Awesome website](https://fontawesome.com/icons?d=gallery&m=free)
+
 ![Font Awesome Example](img/fontawesome-example.png)
-2. Copy additional icons to `/svg/` folder of your fork (or submit own glyphs ;)
-3. Commit to your fork and create a pull request
-4. Download the abapGit icon font and CSS files from the GitHub action
+
+3. Copy additional icons to `/svg/` folder of your fork (or submit own glyphs ;)
+4. Commit to your fork and create a pull request
+5. Download the abapGit icon font and CSS files from [icons.abapgit.org](https://github.com/abapGit/icons.abapgit.org/blob/main/assets.zip) or the last GitHub action
+  
 ![Build Example](img/build-example.png)
 
 The steps to update abapGit are documented [here](https://docs.abapgit.org/development/adding-icons.html).
