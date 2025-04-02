@@ -14,7 +14,7 @@ See also the current font content at https://icons.abapgit.org.
 
 On every commit and pull request, a GitHub action will build the abapGit icon font and corresponding CSS files. The files are available as an artifact in the action and you can download them from there.
 
-When a pull request with new icons is merged (or on push to main branch) the content is also published to https://github.com/abapGit/icon-font. The result can be also seen at https://icons.abapgit.org. As well, the compiled version of the font and css are available to download from that page.
+When a pull request with new icons is merged (or on push to main branch) the content is also published to [https://github.com/abapGit/icon-font](https://github.com/abapGit/icons.abapgit.org). The result can be also seen at https://icons.abapgit.org. As well, the compiled version of the font and css are available to download from that page.
 
 ### Nodejs Build
 
